@@ -2,7 +2,7 @@ const express=require('express');
 const mysql = require('mysql');
 
 const app=express();
-app.listen('3000');
+app.listen('3110');
 
 const pool  = mysql.createPool({
     database: 'kursach',
@@ -303,6 +303,19 @@ const changeUserType=(data)=> {
         }
     });
 };
+
+app.use('/',(req,res)=>{
+    console.log(req.query)
+});
+
+
+
+
+
+
+
+
+
 /*getInfoAboutCategory({category:"отзыв",IDP:7,type:"admin",IDU:3})
     .then(changeCategory)
     .catch((err)=>console.log(err));*/

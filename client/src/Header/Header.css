@@ -1,0 +1,10 @@
+.Header{
+    background-color: #0086b5;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Header_h1{
+    color:white;
+}
