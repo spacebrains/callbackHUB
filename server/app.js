@@ -304,10 +304,28 @@ const changeUserType=(data)=> {
     });
 };
 
-app.use('/',(req,res)=>{
-    console.log(req.query)
-});
+const loadPosts=(data)=>{
+    return new Promise((resolve, reject) => {
+        const {sort} = data;
+        const query = pool.query(`SELECT IDP,IDU,text, SET IDUT="${IDUT}" WHERE IDU="${IDU}"`, (err, res) => {
+            if (err) {
+                console.log('changeCategory-');
+                reject(err);
+            } else {
+                console.log(`changeCategory+ (${res.affectedRows})`);
+                resolve({...data})
+            }
+        });
 
+    });
+};
+app.use('/',(req,res)=>{
+    console.log(req.query);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.json({123:1234,f:1});
+    console.log('send')
+});
 
 
 
@@ -326,8 +344,8 @@ app.use('/',(req,res)=>{
 /*deletePost({IDU:347,IDP:8,type:'admin'})
     .catch((err)=>console.log(err));*/
 
-/*getInfoAboutUser({login:1,password:1,category:'совет',text:"test"})
+getInfoAboutUser({login:1,password:1,category:'совет',textP:"test"})
     .then(getInfoAboutCategory)
     .then(addPost)
-    .catch((err)=>console.log(err));*/
+    .catch((err)=>console.log(err));
 

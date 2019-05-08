@@ -1,0 +1,99 @@
+.Posts{
+    width: 700px;
+}
+
+.Posts__post{
+    display: flex;
+    justify-content: space-between;
+}
+
+.Posts__like-icon{
+    width:50px;
+    height:50px;
+    right:-30px;
+    top:-30px;
+    background: url("./img/not_liked.png") center no-repeat;
+    background-size: 100%;
+    cursor:pointer;
+}
+
+.Posts__like-icon_liked{
+    background-image: url("./img/liked.png");
+}
+
+.Posts__likes{
+    width:80px;
+    margin:45px 0 0 0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:24px;
+}
+
+.Posts__block{
+    width:100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.Posts__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.Posts__h, .Posts__category{
+    margin:10px 15px 0 15px;
+
+}
+
+.Posts__h{
+    font-size:24px;
+    color:#757575;
+}
+
+.Posts__category{
+    font-size:14px;
+    color:#757575;
+}
+
+.Posts__text{
+    margin:15px;
+}
+
+.Posts__footer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0 15px 10px 15px;
+}
+
+.Posts__saves{
+    font-size:16px;
+    color:#757575;
+}
+
+.Posts__footer_right-block{
+    display:flex;
+    flex-direction: column;
+    color:#757575;
+}
+
+.Posts__author{
+    font-size:15px;
+}
+
+.Posts__date{
+    font-size:12px;
+}
+
+
+
+
+
+
+
