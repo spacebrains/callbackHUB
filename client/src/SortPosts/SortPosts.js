@@ -3,7 +3,16 @@ import {connect} from "react-redux";
 import C from "../store/constants";
 import './SortPosts.css'
 
-const SortPosts=({sortBy=f=>f})=>{
+const SortPosts=({sort=C.SORT_TYPES.SORT_BY_DATE,sortBy=f=>f})=>{
+    const change=e=>{
+        const by=e.target.value;
+        console.log('f',sort,by);
+        if(sort!==by && by in C.SORT_TYPES){
+            fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${by}`)
+                .then(j=>j.json())
+                .then(posts=>sortBy(by,posts));
+        }
+    };
     return(
         <section className='SortPosts'>
             <span>Сортировка по: </span>
@@ -11,7 +20,7 @@ const SortPosts=({sortBy=f=>f})=>{
                 <input
                     type="radio"
                     name="sort"
-                    onClick={sortBy}
+                    onClick={change}
                     value={C.SORT_TYPES.SORT_BY_DATE}
                     defaultChecked
                     className='SortPosts__input'
@@ -22,7 +31,7 @@ const SortPosts=({sortBy=f=>f})=>{
                 <input
                     type="radio"
                     name="sort"
-                    onClick={sortBy}
+                    onClick={change}
                     value={C.SORT_TYPES.SORT_BY_REIT}
                     className='SortPosts__input'
                 />
@@ -34,10 +43,12 @@ const SortPosts=({sortBy=f=>f})=>{
 
 export default connect(
     state=>({
+        sort:state.sort
     }),
     dispatch=>({
-        sortBy:(e=>{
-            dispatch({type:C.SORT,by:e.target.value})
+        sortBy:((by,posts)=>{
+            dispatch({type:C.SORT,by});
+            dispatch({type:C.LOAD_POSTS,posts})
         })
     })
 )(SortPosts);

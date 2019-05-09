@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Posts/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/store/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/constants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/store/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/initialState.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/reducer.js" afterDir="false" />
@@ -27,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="309" column="54" selection-start-line="309" selection-start-column="54" selection-end-line="309" selection-end-column="54" />
+            <state relative-caret-position="270">
+              <caret line="357" column="3" selection-start-line="357" selection-start-column="3" selection-end-line="357" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -59,10 +58,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="688" />
-    <option name="y" value="16" />
-    <option name="width" value="974" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1093" />
+    <option name="width" value="834" />
     <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -148,23 +146,25 @@
       <workItem from="1556167326931" duration="1365000" />
       <workItem from="1556186199347" duration="1934000" />
       <workItem from="1557227060579" duration="7591000" />
+      <workItem from="1557350510680" duration="8840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41564000" />
+    <option name="totallyTimeSpent" value="50404000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="688" y="16" width="974" height="1087" extended-state="1" />
+    <frame x="953" y="0" width="974" height="1087" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23717949" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21786065" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.19916143" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39875388" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3385744" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39831403" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -202,10 +202,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mysql/lib/protocol/Parser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="49" column="3" lean-forward="true" selection-start-line="49" selection-start-column="3" selection-end-line="49" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="309" column="54" selection-start-line="309" selection-start-column="54" selection-end-line="309" selection-end-column="54" />
+        <state relative-caret-position="270">
+          <caret line="357" column="3" selection-start-line="357" selection-start-column="3" selection-end-line="357" selection-end-column="3" />
         </state>
       </provider>
     </entry>

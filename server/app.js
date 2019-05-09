@@ -307,24 +307,68 @@ const changeUserType=(data)=> {
 const loadPosts=(data)=>{
     return new Promise((resolve, reject) => {
         const {sort} = data;
-        const query = pool.query(`SELECT IDP,IDU,text, SET IDUT="${IDUT}" WHERE IDU="${IDU}"`, (err, res) => {
+        let querySort;
+        switch(sort){
+            case 'SORT_BY_DATE':
+                querySort='date';
+                break;
+            case 'SORT_BY_REIT':
+                querySort='likes';
+                break;
+            default: querySort='date';
+        }
+        const query = pool.query(
+            `SELECT
+                    posts.IDP AS IDP,
+                    posts.header AS header,
+                    posts.text AS text,
+                    posts.datatime as date,
+                    users.name AS author,
+                    category.name AS category,
+                    (SELECT COUNT(saves.IDP) FROM saves WHERE saves.IDP=posts.IDP) as saves,
+                    (SELECT COUNT(likes.IDP) FROM likes WHERE likes.IDP=posts.IDP) as likes
+                FROM
+                    posts
+                INNER JOIN users ON posts.IDU = users.IDU
+                INNER JOIN category ON posts.IDC = category.IDC
+                ORDER BY ${querySort} DESC`,
+            (err, res) => {
             if (err) {
-                console.log('changeCategory-');
+                console.log('loadPosts-');
                 reject(err);
             } else {
-                console.log(`changeCategory+ (${res.affectedRows})`);
-                resolve({...data})
+                console.log(`loadPosts+ (${res.length})`);
+                resolve({...data, posts: res})
             }
         });
 
     });
 };
-app.use('/',(req,res)=>{
-    console.log(req.query);
+
+const sendAnswer=(data)=>{
+    const {action,res} = data;
+    let finalDate;
+    switch (action) {
+        case 'LOAD_POSTS':
+            finalDate=data.posts;
+            break;
+        default:finalDate='null';
+    }
+
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.json({123:1234,f:1});
-    console.log('send')
+    res.json(finalDate);
+    console.log('send ', finalDate.length);
+};
+
+app.use('/',(req,res)=>{
+    console.log(req.query);
+    switch (req.query.action) {
+        case 'LOAD_POSTS':
+            loadPosts({...req.query,res})
+                .then(sendAnswer);
+    }
+
 });
 
 
@@ -344,8 +388,8 @@ app.use('/',(req,res)=>{
 /*deletePost({IDU:347,IDP:8,type:'admin'})
     .catch((err)=>console.log(err));*/
 
-getInfoAboutUser({login:1,password:1,category:'совет',textP:"test"})
+/*getInfoAboutUser({login:1,password:1,category:'совет',textP:"test"})
     .then(getInfoAboutCategory)
     .then(addPost)
-    .catch((err)=>console.log(err));
+    .catch((err)=>console.log(err));*/
 
