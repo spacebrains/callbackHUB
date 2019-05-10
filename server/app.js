@@ -18,7 +18,7 @@ console.log('start');
 const addUser = (data) =>{
     return new Promise((resolve, reject) => {
         const {login,password} =data;
-        const query = pool.query(`INSERT INTO users(login,password) values("${login}","${password}")`, (err) => {
+        const query = pool.query(`INSERT INTO users(login,password) values(${pool.escape(login)},${pool.escape(password)})`, (err) => {
             if (err) {
                 console.log('addUser-');
                 reject(err);
@@ -35,7 +35,7 @@ const addUser = (data) =>{
 const deleteUser = (data)=>{
     return new Promise((resolve, reject) => {
         const {login,password} =data;
-        const query = pool.query(`DELETE FROM users WHERE login = "${login}" AND password = "${password}"`, (err) => {
+        const query = pool.query(`DELETE FROM users WHERE login = ${pool.escape(login)} AND password = ${pool.escape(password)}`, (err) => {
             if (err) {
                 console.log('deleteUser-');
                 reject(err);
@@ -56,7 +56,7 @@ const getInfoAboutUser=(data)=>{
                        FROM users 
                        INNER JOIN user_types
                        ON users.IDUT=user_types.IDUT
-                       WHERE login = "${login}" AND password = "${password}"`, (err, res) => {
+                       WHERE login = ${pool.escape(login)} AND password = ${pool.escape(password)}`, (err, res) => {
             if (err) reject(err);
             if (!res.length) {
                 console.log('getInfoAboutUser-');
@@ -75,7 +75,7 @@ const getInfoAboutUser=(data)=>{
 const getInfoAboutCategory=(data)=>{
     return new Promise((resolve, reject) => {
         const {category} = data;
-        const query = pool.query(`SELECT IDC FROM category WHERE name = '${category}'`, (err, res) => {
+        const query = pool.query(`SELECT IDC FROM category WHERE name = ${pool.escape(category)}`, (err, res) => {
             if (err) {
                 reject(err);
             }
@@ -95,7 +95,7 @@ const getInfoAboutCategory=(data)=>{
 const getInfoAboutUserType=(data)=>{
     return new Promise((resolve, reject) => {
         const {newType} = data;
-        const query = pool.query(`SELECT IDUT FROM user_types WHERE type = '${newType}'`, (err, res) => {
+        const query = pool.query(`SELECT IDUT FROM user_types WHERE type = ${pool.escape(newType)}`, (err, res) => {
             if (err) {
                 reject(err);
             }
@@ -115,7 +115,7 @@ const getInfoAboutUserType=(data)=>{
 const checkPost=(data)=>{
     return new Promise((resolve, reject) => {
         const {IDP} = data;
-        const query = pool.query(`SELECT IDP FROM posts WHERE IDP = '${IDP}'`, (err, res) => {
+        const query = pool.query(`SELECT IDP FROM posts WHERE IDP = ${pool.escape(IDP)}`, (err, res) => {
             if (err) {
                 reject(err);
             }
@@ -134,7 +134,7 @@ const checkPost=(data)=>{
 const addPost=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDU, IDC, textP} = data;
-        const query = pool.query(`INSERT INTO posts(IDU,text,IDC) values("${IDU}","${textP}","${IDC}")`, (err) => {
+        const query = pool.query(`INSERT INTO posts(IDU,text,IDC) values(${pool.escape(IDU)},${pool.escape(textP)},${pool.escape(IDC)})`, (err) => {
             if (err) {
                 console.log('addpost-');
                 reject(err);
@@ -152,8 +152,8 @@ const deletePost=(data)=> {
         const {IDP,IDU,type} = data;
         let q;
         type==='admin' ?
-            q=`DELETE FROM posts WHERE IDP = "${IDP}"` :
-            q=`DELETE FROM posts WHERE IDP = "${IDP}" AND IDU="${IDU}"`;
+            q=`DELETE FROM posts WHERE IDP = ${pool.escape(IDP)}` :
+            q=`DELETE FROM posts WHERE IDP = ${pool.escape(IDP)} AND IDU=${pool.escape(IDU)}`;
         const query = pool.query(q, (err, res,f) => {
             if (err) {
                 console.log('deletePost-');
@@ -170,7 +170,7 @@ const deletePost=(data)=> {
 const like=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDP,IDU} = data;
-        const query = pool.query(`INSERT INTO likes(IDU,IDP) values("${IDU}","${IDP}")`, (err) => {
+        const query = pool.query(`INSERT INTO likes(IDU,IDP) values(${pool.escape(IDU)},${pool.escape(IDP)})`, (err) => {
             if (err) {
                 console.log('like-');
                 reject(err);
@@ -186,7 +186,7 @@ const like=(data)=> {
 const deleteLike=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDP,IDU} = data;
-        const query = pool.query(`DELETE FROM likes WHERE IDP="${IDP}" AND IDU="${IDU}"`, (err, res) => {
+        const query = pool.query(`DELETE FROM likes WHERE IDP=${pool.escape(IDP)} AND IDU=${pool.escape(IDU)}`, (err, res) => {
             if (err) {
                 console.log('deleteLike-');
                 reject(err);
@@ -202,7 +202,7 @@ const deleteLike=(data)=> {
 const save=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDP,IDU} = data;
-        const query = pool.query(`INSERT INTO saves(IDU,IDP) values("${IDU}","${IDP}")`, (err) => {
+        const query = pool.query(`INSERT INTO saves(IDU,IDP) values(${pool.escape(IDU)},${pool.escape(IDP)})`, (err) => {
             if (err) {
                 console.log('save-');
                 reject(err);
@@ -218,7 +218,7 @@ const save=(data)=> {
 const deleteSave=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDP,IDU} = data;
-        const query = pool.query(`DELETE FROM saves WHERE IDP="${IDP}" AND IDU="${IDU}"`, (err, res) => {
+        const query = pool.query(`DELETE FROM saves WHERE IDP=${pool.escape(IDP)} AND IDU=${pool.escape(IDU)}`, (err, res) => {
             if (err) {
                 console.log('deleteSave-');
                 reject(err);
@@ -234,7 +234,7 @@ const deleteSave=(data)=> {
 const addComment=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDP,IDU,textC} = data;
-        const query = pool.query(`INSERT INTO comments(IDU,IDP, text) values("${IDU}","${IDP}","${textC}")`, (err) => {
+        const query = pool.query(`INSERT INTO comments(IDU,IDP, text) values(${pool.escape(IDU)},${pool.escape(IDP)},${pool.escape(textC)})`, (err) => {
             if (err) {
                 console.log('addComment-');
                 reject(err);
@@ -252,8 +252,8 @@ const deleteComment=(data)=> {
         const {IDPC,IDU,type} = data;
         let q;
         type==='admin' ?
-            q=`DELETE FROM comments WHERE IDPC="${IDPC}"` :
-            q=`DELETE FROM comments WHERE IDPC="${IDPC}" AND IDU="${IDU}"`;
+            q=`DELETE FROM comments WHERE IDPC=${pool.escape(IDPC)}` :
+            q=`DELETE FROM comments WHERE IDPC=${pool.escape(IDPC)} AND IDU=${pool.escape(IDU)}`;
         const query = pool.query(q, (err, res) => {
             if (err) {
                 console.log('deleteComment-');
@@ -272,8 +272,8 @@ const changeCategory=(data)=> {
         const {IDP,IDC,IDU,type} = data;
         let q;
         type==='admin' ?
-            q=`UPDATE posts SET IDC="${IDC}" WHERE IDP="${IDP}"` :
-            q=`UPDATE posts SET IDC="${IDC}" WHERE IDP="${IDP}" AND IDU="${IDU}"`;
+            q=`UPDATE posts SET IDC="${IDC}" WHERE IDP=${pool.escape(IDP)}` :
+            q=`UPDATE posts SET IDC="${IDC}" WHERE IDP=${pool.escape(IDP)} AND IDU=${pool.escape(IDU)}`;
         const query = pool.query(q, (err, res) => {
             if (err) {
                 console.log('changeCategory-');
@@ -291,7 +291,7 @@ const changeUserType=(data)=> {
     return new Promise((resolve, reject) => {
         const {IDU, type, IDUT} = data;
         if(type==="admin") {
-            const query = pool.query(`UPDATE user SET IDUT="${IDUT}" WHERE IDU="${IDU}"`, (err, res) => {
+            const query = pool.query(`UPDATE user SET IDUT=${pool.escape(IDUT)} WHERE IDU=${pool.escape(IDU)}`, (err, res) => {
                 if (err) {
                     console.log('changeCategory-');
                     reject(err);
@@ -306,7 +306,9 @@ const changeUserType=(data)=> {
 
 const loadPosts=(data)=>{
     return new Promise((resolve, reject) => {
-        const {sort} = data;
+        const {sort,IDU} = data;
+        let searchLikes='';
+        if(IDU) searchLikes=`,(SELECT count(*) FROM likes WHERE likes.IDU=${pool.escape(IDU)} AND likes.IDP=posts.IDP) as liked`;
         let querySort;
         switch(sort){
             case 'SORT_BY_DATE':
@@ -327,6 +329,7 @@ const loadPosts=(data)=>{
                     category.name AS category,
                     (SELECT COUNT(saves.IDP) FROM saves WHERE saves.IDP=posts.IDP) as saves,
                     (SELECT COUNT(likes.IDP) FROM likes WHERE likes.IDP=posts.IDP) as likes
+                    ${searchLikes}
                 FROM
                     posts
                 INNER JOIN users ON posts.IDU = users.IDU
@@ -341,7 +344,6 @@ const loadPosts=(data)=>{
                 resolve({...data, posts: res})
             }
         });
-
     });
 };
 
@@ -364,8 +366,9 @@ const sendAnswer=(data)=>{
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json(finalDate);
-    console.log('send ', finalDate);
+    console.log('send ');
 };
+
 
 app.use('/',(req,res)=>{
     const sendError=(err)=>{
@@ -376,10 +379,20 @@ app.use('/',(req,res)=>{
         console.log(err);
     };
     console.log(req.query);
+    const {login,password} = req.query;
     switch (req.query.action) {
         case 'LOAD_POSTS':
-            loadPosts({...req.query,res})
-                .then(sendAnswer);
+            if(login && password) {
+                getInfoAboutUser({...req.query,res})
+                    .then(loadPosts)
+                    .then(sendAnswer)
+                    .catch(sendError)
+            }
+            else {
+                loadPosts({...req.query,res})
+                    .then(sendAnswer)
+                    .catch(sendError);
+            }
             break;
         case 'GET_INFO_ABOUT_USER':
             getInfoAboutUser({...req.query,res})

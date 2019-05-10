@@ -3,15 +3,18 @@ const data=()=>
     let userPanelDate;
     if(localStorage['login'] && localStorage['password']){
         userPanelDate={
+            userPanelType:'LOGGED_IN',
             login:localStorage['login'],
             password:localStorage['password'],
-            userPanelType:'LOGGED_IN'
+            hint:false
         };
     }
     else{
         userPanelDate={
             userPanelType:'AUTHORIZATION',
-            hint:false
+            hint:false,
+            login:'',
+            password:''
         };
     }
 

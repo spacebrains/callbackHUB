@@ -24,8 +24,8 @@ export const userPanelDate = (state={},action) =>{
         case C.SHOW_HINT:
             return {...state,hint:true};
         case C.LOGGING_IN:
-            localStorage['login']=action.login;
-            localStorage['password']=action.password;
+            localStorage.setItem('login',action.login);
+            localStorage.setItem('password',action.password);
             return {...state,login:action.login,password:action.password,userPanelType:C.USER_PANEL_TYPES.LOGGED_IN,hint:false};
         case C.EXIT:
             localStorage.removeItem('login');

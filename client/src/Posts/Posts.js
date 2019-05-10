@@ -7,9 +7,12 @@ import './Posts.css'
 class Posts extends Component{
     category; liked; saves; author; likes; IDP;
     componentWillMount() {
-        fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${C.SORT_TYPES.SORT_BY_DATE}`)
+        fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${C.SORT_TYPES.SORT_BY_DATE}&login=${this.props.login}&password=${this.props.password}`)
             .then(j=>j.json())
-            .then(posts=>this.props.loadPosts(posts));
+            .then(posts=> {
+                this.props.loadPosts(posts)
+            })
+            .catch((err)=>console.error(err));
     }
 
     like(){
@@ -56,6 +59,8 @@ class Posts extends Component{
 export default connect(
     state=>({
         posts:state.posts,
+        login:state.userPanelDate.login,
+        password:state.userPanelDate.password
     }),
     dispatch=>({
         loadPosts:posts=>{
