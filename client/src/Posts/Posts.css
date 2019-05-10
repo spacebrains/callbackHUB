@@ -1,15 +1,28 @@
 .Posts{
     width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .Posts__post{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.Posts__likes{
+    width:80px;
+    margin:30px 0 0 0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:24px;
 }
 
 .Posts__like-icon{
-    width:50px;
-    height:50px;
+    width:35px;
+    height:35px;
     right:-30px;
     top:-30px;
     background: url("./img/not_liked.png") center no-repeat;
@@ -21,22 +34,13 @@
     background-image: url("./img/liked.png");
 }
 
-.Posts__likes{
-    width:80px;
-    margin:45px 0 0 0;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    font-size:24px;
-}
-
 .Posts__block{
-    width:100%;
+    width:630px;
     background: white;
     display: flex;
     flex-direction: column;
-    margin: 5px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    margin: 5px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.14), 0 5px 5px rgba(0,0,0,0.12);
 }
 
 .Posts__header{
@@ -52,7 +56,7 @@
 }
 
 .Posts__h{
-    font-size:24px;
+    font-size:20px;
     color:#757575;
 }
 

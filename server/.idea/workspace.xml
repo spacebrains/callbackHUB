@@ -3,16 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3c265998-316d-484e-aed0-7d6d1ad5a0ba" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/App/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/App/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/Posts/Posts.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Posts/Posts.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Posts/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/initialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/SortPosts/SortPosts.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,7 +56,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1087" />
@@ -149,15 +144,15 @@
       <workItem from="1556167326931" duration="1365000" />
       <workItem from="1556186199347" duration="1934000" />
       <workItem from="1557227060579" duration="7591000" />
-      <workItem from="1557350510680" duration="18718000" />
+      <workItem from="1557350510680" duration="18799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60282000" />
+    <option name="totallyTimeSpent" value="60363000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1087" extended-state="0" />
+    <frame x="953" y="0" width="974" height="1087" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.21786065" />
