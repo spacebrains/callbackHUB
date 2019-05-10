@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SortPosts from '../SortPosts/SortPosts'
-import './Posts.css'
 import C from "../store/constants";
+import './Posts.css'
 
 class Posts extends Component{
+    category;
+    liked;
+    saves;
+    author;
+    likes;
+    IDP;
     componentWillMount() {
         fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${C.SORT_TYPES.SORT_BY_DATE}`)
             .then(j=>j.json())
@@ -49,7 +55,7 @@ class Posts extends Component{
 
 export default connect(
     state=>({
-        posts:state.posts
+        posts:state.posts,
     }),
     dispatch=>({
         loadPosts:posts=>{

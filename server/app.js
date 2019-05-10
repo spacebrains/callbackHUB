@@ -17,8 +17,8 @@ console.log('start');
 
 const addUser = (data) =>{
     return new Promise((resolve, reject) => {
-        const {name,login,password} =data;
-        const query = pool.query(`INSERT INTO users(name,login,password) values("${name}","${login}","${password}")`, (err) => {
+        const {login,password} =data;
+        const query = pool.query(`INSERT INTO users(login,password) values("${login}","${password}")`, (err) => {
             if (err) {
                 console.log('addUser-');
                 reject(err);
@@ -323,7 +323,7 @@ const loadPosts=(data)=>{
                     posts.header AS header,
                     posts.text AS text,
                     posts.datatime as date,
-                    users.name AS author,
+                    users.login as author,
                     category.name AS category,
                     (SELECT COUNT(saves.IDP) FROM saves WHERE saves.IDP=posts.IDP) as saves,
                     (SELECT COUNT(likes.IDP) FROM likes WHERE likes.IDP=posts.IDP) as likes
@@ -352,23 +352,45 @@ const sendAnswer=(data)=>{
         case 'LOAD_POSTS':
             finalDate=data.posts;
             break;
+        case 'GET_INFO_ABOUT_USER':
+            finalDate={getInfo:true};
+            break;
+        case 'ADD_USER':
+            finalDate={add_user:true};
+            break;
         default:finalDate='null';
     }
 
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json(finalDate);
-    console.log('send ', finalDate.length);
+    console.log('send ', finalDate);
 };
 
 app.use('/',(req,res)=>{
+    const sendError=(err)=>{
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.status(404);
+        res.json(err);
+        console.log(err);
+    };
     console.log(req.query);
     switch (req.query.action) {
         case 'LOAD_POSTS':
             loadPosts({...req.query,res})
                 .then(sendAnswer);
+            break;
+        case 'GET_INFO_ABOUT_USER':
+            getInfoAboutUser({...req.query,res})
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'ADD_USER':
+            addUser({...req.query,res})
+                .then(sendAnswer)
+                .catch(sendError)
     }
-
 });
 
 

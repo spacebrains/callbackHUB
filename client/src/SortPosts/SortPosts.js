@@ -6,7 +6,6 @@ import './SortPosts.css'
 const SortPosts=({sort=C.SORT_TYPES.SORT_BY_DATE,sortBy=f=>f})=>{
     const change=e=>{
         const by=e.target.value;
-        console.log('f',sort,by);
         if(sort!==by && by in C.SORT_TYPES){
             fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${by}`)
                 .then(j=>j.json())
