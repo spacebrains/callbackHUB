@@ -15,9 +15,9 @@ class Posts extends Component{
             .catch((err)=>console.error(err));
     }
 
-    like(){
-
-    }
+    like(e){
+        console.log(e.target.parentNode.parentNode.value);
+    };
 
 
     render() {
@@ -26,10 +26,13 @@ class Posts extends Component{
                 <SortPosts/>
                 <ul>
                     {this.props.posts.map((p) =>
-                        <li key={p.IDP} className='Posts__post'>
+                        <li key={p.IDP} className='Posts__post' value={p.IDP}>
                             <div className='Posts__likes'>
                                 <div
-                                    className={p.liked ? 'Posts__like-icon Posts__like-icon_liked' : 'Posts__like-icon'}> </div>
+                                    className={p.liked ? 'Posts__like-icon Posts__like-icon_liked' : 'Posts__like-icon'}
+                                    onClick={this.like}
+                                >
+                                </div>
                                 {p.likes}
                             </div>
                             <section className='Posts__block '>

@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c265998-316d-484e-aed0-7d6d1ad5a0ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/Posts/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Posts/Posts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/initialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -64,9 +61,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="364" />
-    <option name="y" value="4" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="846" />
+    <option name="y" value="89" />
     <option name="width" value="1555" />
     <option name="height" value="707" />
   </component>
@@ -153,15 +150,15 @@
       <workItem from="1556167326931" duration="1365000" />
       <workItem from="1556186199347" duration="1934000" />
       <workItem from="1557227060579" duration="7591000" />
-      <workItem from="1557350510680" duration="29430000" />
+      <workItem from="1557350510680" duration="30027000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70994000" />
+    <option name="totallyTimeSpent" value="71591000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.21786065" />
