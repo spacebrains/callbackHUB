@@ -133,8 +133,8 @@ const checkPost=(data)=>{
 
 const addPost=(data)=> {
     return new Promise((resolve, reject) => {
-        const {IDU, IDC, textP} = data;
-        const query = pool.query(`INSERT INTO posts(IDU,text,IDC) values(${pool.escape(IDU)},${pool.escape(textP)},${pool.escape(IDC)})`, (err) => {
+        const {IDU, IDC, text,header} = data;
+        const query = pool.query(`INSERT INTO posts(IDU,text,IDC,header) values(${pool.escape(IDU)},${pool.escape(text)},${pool.escape(IDC)},${pool.escape(header)})`, (err) => {
             if (err) {
                 console.log('addpost-');
                 reject(err);
@@ -233,8 +233,8 @@ const deleteSave=(data)=> {
 
 const addComment=(data)=> {
     return new Promise((resolve, reject) => {
-        const {IDP,IDU,textC} = data;
-        const query = pool.query(`INSERT INTO comments(IDU,IDP, text) values(${pool.escape(IDU)},${pool.escape(IDP)},${pool.escape(textC)})`, (err) => {
+        const {IDP,IDU,text} = data;
+        const query = pool.query(`INSERT INTO comments(IDU,IDP, text) values(${pool.escape(IDU)},${pool.escape(IDP)},${pool.escape(text)})`, (err) => {
             if (err) {
                 console.log('addComment-');
                 reject(err);
@@ -262,6 +262,27 @@ const deleteComment=(data)=> {
             else {
                 console.log(`deleteComment+ (${res.affectedRows})`);
                 resolve({...data})
+            }
+        });
+    });
+};
+
+const loadComments=(data)=>{
+    return new Promise((resolve, reject) => {
+        const {IDP} = data;
+        const query = pool.query(`
+        SELECT  users.login as login, comments.text as text, comments.datetime as datetime, comments.IDPC as IDPC
+        FROM comments 
+        INNER JOIN users
+        ON comments.IDU=users.IDU
+        WHERE IDP=${pool.escape(IDP)}`, (err, res) => {
+            if (err) {
+                console.log('loadComments-');
+                reject(err);
+            }
+            else {
+                console.log(`loadComments+ (${res.length})`);
+                resolve({...data,comments:res})
             }
         });
     });
@@ -306,9 +327,19 @@ const changeUserType=(data)=> {
 
 const loadPosts=(data)=>{
     return new Promise((resolve, reject) => {
-        const {sort,IDU} = data;
+        const {sort,IDU,saves} = data;
         let searchLikes='';
-        if(IDU) searchLikes=`,(SELECT count(*) FROM likes WHERE likes.IDU=${pool.escape(IDU)} AND likes.IDP=posts.IDP) as liked`;
+        let searchLikesAndSaves='';
+        if (IDU) searchLikesAndSaves = `
+        ,(SELECT count(*) FROM likes WHERE likes.IDU=${pool.escape(IDU)} AND likes.IDP=posts.IDP) as liked
+        ,(SELECT count(*) FROM saves WHERE saves.IDU=${pool.escape(IDU)} AND saves.IDP=posts.IDP) as saved
+        `;
+        let saveSearchInnerJoin='';
+        let saveSearchCondition='';
+        if(saves && IDU) {
+            saveSearchInnerJoin=`INNER JOIN saves ON posts.IDP=saves.IDP`;
+            saveSearchCondition=`WHERE saves.IDU=${pool.escape(IDU)}`
+        }
         let querySort;
         switch(sort){
             case 'SORT_BY_DATE':
@@ -324,16 +355,18 @@ const loadPosts=(data)=>{
                     posts.IDP AS IDP,
                     posts.header AS header,
                     posts.text AS text,
-                    posts.datatime as date,
+                    posts.datetime as date,
                     users.login as author,
                     category.name AS category,
-                    (SELECT COUNT(saves.IDP) FROM saves WHERE saves.IDP=posts.IDP) as saves,
-                    (SELECT COUNT(likes.IDP) FROM likes WHERE likes.IDP=posts.IDP) as likes
-                    ${searchLikes}
-                FROM
-                    posts
+                    (SELECT COUNT(*) FROM saves WHERE saves.IDP=posts.IDP) as saves,
+                    (SELECT COUNT(*) FROM likes WHERE likes.IDP=posts.IDP) as likes,
+                    (SELECT COUNT(*) FROM comments WHERE comments.IDP=posts.IDP) as comments_l
+                    ${searchLikesAndSaves}
+                FROM posts
                 INNER JOIN users ON posts.IDU = users.IDU
                 INNER JOIN category ON posts.IDC = category.IDC
+                ${saveSearchInnerJoin}
+                ${saveSearchCondition}
                 ORDER BY ${querySort} DESC`,
             (err, res) => {
             if (err) {
@@ -360,7 +393,24 @@ const sendAnswer=(data)=>{
         case 'ADD_USER':
             finalDate={add_user:true};
             break;
-        default:finalDate='null';
+        case 'LIKE':
+            finalDate={like:true};
+            break;
+        case 'DELETE_LIKE':
+            finalDate={deleteLike:true};
+            break;
+        case 'SAVE':
+            finalDate={save:true};
+            break;
+        case 'DELETE_SAVE':
+            finalDate={deleteSave:true};
+            break;
+        case 'LOAD_COMMENTS':
+            finalDate=data.comments;
+            break;
+        case 'ADD_COMMENT':
+            finalDate=data.comments;
+            break;
     }
 
     res.header("Access-Control-Allow-Origin", "*");
@@ -375,7 +425,7 @@ app.use('/',(req,res)=>{
         res.header("Access-Control-Allow-Origin", "*");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         res.status(404);
-        res.json(err);
+        res.send();
         console.log(err);
     };
     console.log(req.query);
@@ -402,7 +452,58 @@ app.use('/',(req,res)=>{
         case 'ADD_USER':
             addUser({...req.query,res})
                 .then(sendAnswer)
-                .catch(sendError)
+                .catch(sendError);
+            break;
+        case 'LIKE':
+            getInfoAboutUser({...req.query,res})
+                .then(checkPost)
+                .then(like)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'DELETE_LIKE':
+            getInfoAboutUser({...req.query,res})
+                .then(checkPost)
+                .then(deleteLike)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'SAVE':
+            getInfoAboutUser({...req.query,res})
+                .then(checkPost)
+                .then(save)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'DELETE_SAVE':
+            getInfoAboutUser({...req.query,res})
+                .then(checkPost)
+                .then(deleteSave)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'LOAD_COMMENTS':
+            checkPost({...req.query,res})
+                .then(loadComments)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'ADD_COMMENT':
+            checkPost({...req.query,res})
+                .then(getInfoAboutUser)
+                .then(addComment)
+                .then(loadComments)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        case 'ADD_POST':
+            getInfoAboutUser({...req.query,res})
+                .then(getInfoAboutCategory)
+                .then(addPost)
+                .then(sendAnswer)
+                .catch(sendError);
+            break;
+        default:sendError()
     }
 });
 

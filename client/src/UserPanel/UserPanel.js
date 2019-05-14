@@ -11,7 +11,8 @@ const UserPanel=({
                      exit=f=>f,
                      showRegistrationList=f=>f,
                      showAuthorizationList=f=>f,
-                     loadPosts=f=>f})=>
+                     loadPosts=f=>f,
+                     resetPosts=f=>f})=>
 {
     let userPanelType=()=>{
         let _login,_password;
@@ -24,7 +25,6 @@ const UserPanel=({
                         fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${C.SORT_TYPES.SORT_BY_DATE}&login=${_login.value}&password=${_password.value}`)
                             .then(j=>j.json())
                             .then(posts=>{
-                                console.log('234',_login.value,_password.value);
                                 loggingIn(_login.value,_password.value);
                                 loadPosts(posts);
                             })
@@ -39,20 +39,14 @@ const UserPanel=({
                 .then(j=>{
                     if(j.status===404) showHint();
                     else {
-                        fetch(`http://localhost:3110/?action=${C.LOAD_POSTS}&sort=${C.SORT_TYPES.SORT_BY_DATE}&login=${_login.value}&password=${_password.value}`)
-                            .then(j=>j.json())
-                            .then(posts=>{
-                                loggingIn(_login.value,_password.value);
-                            })
-                            .catch((err)=>console.error(err));
+                        loggingIn(_login.value,_password.value);
                     }
                 });
         };
 
         const submitExit=()=>{
-            console.log(posts);
             exit();
-            loadPosts(posts.map((p)=>{return {...p,liked:false}}));
+            resetPosts();
         };
 
        switch (userPanelDate.userPanelType) {
@@ -65,7 +59,7 @@ const UserPanel=({
                            <div className='UserPanel__input-container'>
                                 <input className='UserPanel__input' ref={input=>_password= input} type="password"  placeholder='Пароль' required/>
                            </div>
-                                {userPanelDate.hint ? <span className='UserPanel__span'>Неправильнй пароль</span> : <span> </span>}
+                   {userPanelDate.hint ? <span className='UserPanel__error'>Неправильнй <br/>логин логин или пароль</span> : <span> </span>}
                                 <button className='UserPanel__button'>ВОЙТИ</button>
                            <span className='UserPanel__span' onClick={showRegistrationList}>регистрация</span>
                       </form>;
@@ -79,7 +73,7 @@ const UserPanel=({
                            <div className='UserPanel__input-container'>
                                <input className='UserPanel__input' ref={input=>_password= input} type="password" placeholder='Пароль' required/>
                            </div>
-                               {userPanelDate.hint ? <span className='UserPanel__span'>Ошибка регистрации</span> : <span> </span>}
+                               {userPanelDate.hint ? <span className='UserPanel__error'>Ошибка регистрации</span> : <span> </span>}
                            <button className='UserPanel__button'>СОЗДАТЬ АККАУНТ</button>
                            <span className='UserPanel__span' onClick={showAuthorizationList}>войти</span>
                       </form>;
@@ -93,6 +87,7 @@ const UserPanel=({
            default: return <div>error</div>
        }
     };
+
 
     return(
         <aside className='UserPanel'>
@@ -124,6 +119,9 @@ export default connect(
         }),
         loadPosts:(posts=>{
             dispatch({type:C.LOAD_POSTS,posts})
+        }),
+        resetPosts:(()=>{
+            dispatch({type:C.RESET_POSTS})
         })
     })
 )(UserPanel);

@@ -79,3 +79,9 @@
     color: #0086b5;
 
 }
+
+.UserPanel__error{
+    font-size: 14px;
+    color: #f30157;
+    text-align: center;
+}
