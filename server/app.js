@@ -1,5 +1,6 @@
 const express=require('express');
 const mysql = require('mysql');
+const jsonxml = require('jsontoxml');
 
 const app=express();
 app.listen('3110');
@@ -373,8 +374,15 @@ const loadPosts=(data)=>{
                 console.log('loadPosts-');
                 reject(err);
             } else {
+                const newM= res.map((e)=>{
+                    const pD = new Date(e.date);
+                    console.log(e.date,pD);
+                    const newDate = (`${pD.getFullYear()}-${pD.getMonth()+1}-${pD.getMonth()}-${pD.getHours()}:${pD.getMinutes()}:${pD.getSeconds()}`);
+                    return {...e,date:newDate};
+                });
+                console.log('parseDate+');
                 console.log(`loadPosts+ (${res.length})`);
-                resolve({...data, posts: res})
+                resolve({...data, posts: newM})
             }
         });
     });

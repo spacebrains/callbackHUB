@@ -37,7 +37,7 @@ const AddPost=({login='',password='',addPostPanelState=false,addPostPanel=f=>f,l
                             <select className='AddPost__form__select' name="" id="" ref={input=>_category=input} placeholder='Категория'>
                                 <option value="совет">совет</option>
                                 <option value="lifehack">lifehack</option>
-                                <option value="отзыв">совет</option>
+                                <option value="отзыв">отзыв</option>
                             </select>
                         </section>
                         <div className='AddPost__form__input-text-container'>

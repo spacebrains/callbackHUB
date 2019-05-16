@@ -6,6 +6,7 @@ export const posts = (state=[],action) =>{
       case C.LOAD_POSTS:
           return [...action.posts];
       case C.RESET_POSTS:
+          return state.map(p=> {return{...p,liked:false,saved:false}});
       case C.LIKE:
           return state.map(p=>p.IDP===action.IDP ? {...p,liked:true,likes:(p.likes+1)} : {...p});
       case C.DELETE_LIKE:

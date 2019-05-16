@@ -14,7 +14,8 @@ const data=()=>
             userPanelType:'AUTHORIZATION',
             hint:false,
             login:'',
-            password:''
+            password:'',
+            type:'user'
         };
     }
 
