@@ -1,6 +1,5 @@
 const express=require('express');
 const mysql = require('mysql');
-const jsonxml = require('jsontoxml');
 
 const app=express();
 app.listen('3110');
@@ -52,6 +51,7 @@ const deleteUser = (data)=>{
 const getInfoAboutUser=(data)=>{
     return new Promise((resolve, reject) => {
         const {login,password} = data;
+        console.log(login, password);
         const query = pool.query(`
                        SELECT users.IDU, user_types.type  
                        FROM users 
@@ -60,7 +60,7 @@ const getInfoAboutUser=(data)=>{
                        WHERE login = ${pool.escape(login)} AND password = ${pool.escape(password)}`, (err, res) => {
             if (err) reject(err);
             if (!res.length) {
-                console.log('getInfoAboutUser-');
+                console.log('getInfoAboutUser-', res);
                 reject('user not found');
             }
             else {
@@ -282,8 +282,13 @@ const loadComments=(data)=>{
                 reject(err);
             }
             else {
+                const newM= res.map((e)=>{
+                    const pD = new Date(e.datetime);
+                    const newDate = (`${pD.getFullYear()}-${pD.getMonth()+1}-${pD.getMonth()}-${pD.getHours()}:${pD.getMinutes()}:${pD.getSeconds()}`);
+                    return {...e,datetime:newDate};
+                });
                 console.log(`loadComments+ (${res.length})`);
-                resolve({...data,comments:res})
+                resolve({...data,comments:newM})
             }
         });
     });
@@ -376,7 +381,6 @@ const loadPosts=(data)=>{
             } else {
                 const newM= res.map((e)=>{
                     const pD = new Date(e.date);
-                    console.log(e.date,pD);
                     const newDate = (`${pD.getFullYear()}-${pD.getMonth()+1}-${pD.getMonth()}-${pD.getHours()}:${pD.getMinutes()}:${pD.getSeconds()}`);
                     return {...e,date:newDate};
                 });

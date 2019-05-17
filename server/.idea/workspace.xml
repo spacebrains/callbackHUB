@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="442" mnemonic="7" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="441" mnemonic="7" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c265998-316d-484e-aed0-7d6d1ad5a0ba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Zapiska-Bibd.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Zapiska-Bibd.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bd-scheme.vsdx" beforeDir="false" afterPath="$PROJECT_DIR$/../bd-scheme.vsdx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/AddPost/AddPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/AddPost/AddPost.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/Posts/Posts.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/Posts/Posts.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/UserPanel/UserPanel.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../client/src/store/initialState.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/initialState.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/store/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/store/reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,8 +26,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="383" column="58" selection-start-line="383" selection-start-column="58" selection-end-line="383" selection-end-column="58" />
+            <state relative-caret-position="258">
+              <caret line="286" column="33" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/action.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="880">
+              <caret line="40" column="2" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -80,11 +83,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="500" />
-    <option name="y" value="-28" />
-    <option name="width" value="991" />
-    <option name="height" value="1040" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="953" />
+    <option name="width" value="974" />
+    <option name="height" value="1087" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -173,24 +175,25 @@
       <workItem from="1556186199347" duration="1934000" />
       <workItem from="1557227060579" duration="7591000" />
       <workItem from="1557350510680" duration="53644000" />
-      <workItem from="1557999657179" duration="437000" />
+      <workItem from="1557999657179" duration="3891000" />
+      <workItem from="1558044290222" duration="1788000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95645000" />
+    <option name="totallyTimeSpent" value="100887000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="382" y="61" width="1246" height="934" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.21786065" />
-      <window_info id="Structure" order="1" side_tool="true" visible="true" weight="0.12539515" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49948078" weight="0.10906217" />
+      <window_info id="Structure" order="1" sideWeight="0.5005192" side_tool="true" visible="true" weight="0.22930464" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4184839" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4369538" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39831403" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -215,13 +218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/action.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="40" column="2" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="352">
@@ -238,8 +234,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="383" column="58" selection-start-line="383" selection-start-column="58" selection-end-line="383" selection-end-column="58" />
+        <state relative-caret-position="258">
+          <caret line="286" column="33" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="40" column="2" selection-start-line="40" selection-start-column="2" selection-end-line="40" selection-end-column="2" />
         </state>
       </provider>
     </entry>
